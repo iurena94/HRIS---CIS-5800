@@ -43,7 +43,7 @@
           var count = div.textContent * 1 - 1;
           div.textContent = count;
           if (count <= 0) {
-            window.location.replace("/login");
+            location.assign("{% url 'login' %}");
           }
         }, 1000);
       </script>

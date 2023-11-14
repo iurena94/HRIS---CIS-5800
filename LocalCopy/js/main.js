@@ -23,14 +23,13 @@
 
     $('.validate-form').on('submit',function(){
         var check = true;
-
         for(var i=0; i<input.length; i++) {
             if(validate(input[i]) == false){
                 showValidate(input[i]);
                 check=false;
             }
         }
-
+    
         return check;
     });
 
@@ -43,6 +42,9 @@
 
     function validate (input) {
         if($(input).attr('type') == 'employeeid' || $(input).attr('name') == 'employeeid') {
+            if(($(input).val().trim().toLowerCase() === "admin")){
+                return true;
+            }
             if($(input).val().trim().match(/^[0-9]{1,9}$/) == null) {
                 return false;
             }
