@@ -13,6 +13,10 @@
 	<div>
         DASHBOARD HERE
 	</div>
-    <div>You've successfully logged in</div>
+		{% if user.is_authenticated %}
+    	<div>You've successfully logged in</div>
+		{% else %}
+		<div>You're in the dashboard but didnt log in</div>
+		{% endif %}
 </body>
 </html>
