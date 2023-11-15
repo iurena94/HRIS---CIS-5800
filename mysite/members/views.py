@@ -10,7 +10,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('dashboard')
         else:
             messages.success(request, ("Error logging in, Try again ..."))
             return redirect('login') 
@@ -18,3 +18,16 @@ def login_user(request):
     else:
         return render(request, 'authenticate/login.html',{})
 
+def signup(request):
+    if request.method == "POST":
+        username = request.POST.get("employeeid")
+        password = request.POST.get("employeeid")
+        myuser = User.objects.create_user(username, password)
+        myuser.save()
+        return render(request,"thankyou.html")
+    else:
+        return render(request, "authenticate/signup.html")
+
+def logout_view(request):
+    logout(request)
+    return redirect(request, "login")
