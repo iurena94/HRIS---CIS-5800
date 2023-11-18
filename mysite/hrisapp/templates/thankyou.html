@@ -1,62 +1,37 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Walmart Portal Thank You</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
-</head>
-<body>
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-					<span class="login100-form-title p-b-26">
-						<img src="{% static 'images/icons/Walmart_logo.png' %}" alt="Walmart Logo" width="100%">
-						<p class="p-b-35">Employee Self-Service System</p>
-					</span>
-                    <span class="login100-form-title p-b-26">
-						<p class="p-b-35">You've successfully registered!</p>
-                        <p class="p-b-35">You will be contacted shortly.</p>
-                        <span id="counter">5</span>
-					</span>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div id="dropDownSelect1"></div>
 
-	<script>
-        setInterval(function () {
-          var div = document.querySelector("#counter");
-          var count = div.textContent * 1 - 1;
-          div.textContent = count;
-          if (count <= 0) {
-            location.assign("{% url 'login' %}");
-          }
-        }, 1000);
-      </script>
+{% block title %}Walmart Portal Thank You{% endblock %}
 
-	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
-	<script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
-	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
-	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
-	<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
-	<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
-	<script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
-	<script src="{% static 'js/main.js' %}"></script>
+{% block nav %}{% endblock nav %}
+{% block content %}
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+                <span class="login100-form-title p-b-26">
+                    <img src="{% static 'images/icons/Walmart_logo.png' %}" alt="Walmart Logo" width="100%">
+                    <p class="p-b-35">Employee Self-Service System</p>
+                </span>
+                <span class="login100-form-title p-b-26">
+                    <p class="p-b-35">You've successfully registered!</p>
+                    <p class="p-b-35">You will be contacted shortly.</p>
+                    <span id="counter">5</span>
+                </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="dropDownSelect1"></div>
 
-</body>
-</html>
+<script>
+    setInterval(function () {
+      var div = document.querySelector("#counter");
+      var count = div.textContent * 1 - 1;
+      div.textContent = count;
+      if (count <= 0) {
+        location.assign("{% url 'login' %}");
+      }
+    }, 1000);
+  </script>
+{% endblock %}
