@@ -5,7 +5,7 @@
  End-to-end web application to schedule, manage tasks, and bridge communication between HR Officers, Managers, and Employees.
 
  ## How to access
- 1. Clone this repository
+ 1. Clone this repository `git clone link_here`
 
  2. Enter the outermost 'mysite' directory
 
