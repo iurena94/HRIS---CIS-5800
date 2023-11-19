@@ -21,7 +21,8 @@ def logout_view(request):
 
 @login_required(login_url="login")
 def dashboard(request):
-    return render(request, "dashboard.html") 
+    id = request.user.username
+    return render(request, "dashboard.html",{"id":id}) 
 
 def contacts(request):
     return render(request, "")

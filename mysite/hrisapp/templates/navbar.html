@@ -4,12 +4,14 @@
         <div class="navbar">
             <div class="logo">
                 <img src="{% static 'images/icons/walmart-yellow6.png' %}" alt="Walmart's small logo">
-                <span>Name Here</span>
+                <div class="menu_list">
+                    <span style="font-weight: bold; color:black;font-size:15px;">FNAME LNAME</span>
+                    <span>#{{ id }}</span>
+                </div>
             </div>
-
             <div class="menu_list">
                 <span>Menu</span>
-                <a href="#"><i class="fa-brands fa-dashcube"></i> Dashboard</a>
+                <a href="{% url 'dashboard' %}"><i class="fa-brands fa-dashcube"></i> Dashboard</a>
                 <a href="#"><i class="fa-solid fa-star"></i> Important</a>
                 <a href="#"><i class="fa-solid fa-calendar-days"></i> Planned</a>
                 <a href="#"><i class="fa-solid fa-list-check"></i> Tasks</a>
@@ -22,7 +24,7 @@
             </div>
 
             <div class="menu_list">
-                <a href="#"><i class="fa-solid fa-right-from-bracket"></i>logout</a>
+                <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
             </div>
         </div>
     </nav>
