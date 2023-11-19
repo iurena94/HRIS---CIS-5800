@@ -1,5 +1,29 @@
-<ul style="position:absolute">
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-</ul>
+{% load static %}
+<div class="navcontainer" style="position:absolute;" >
+    <nav style="background: rgb(242,242,242, 0.9);">
+        <div class="navbar">
+            <div class="logo">
+                <img src="{% static 'images/icons/walmart-yellow6.png' %}" alt="Walmart's small logo">
+                <span>Name Here</span>
+            </div>
+
+            <div class="menu_list">
+                <span>Menu</span>
+                <a href="#"><i class="fa-brands fa-dashcube"></i> Dashboard</a>
+                <a href="#"><i class="fa-solid fa-star"></i> Important</a>
+                <a href="#"><i class="fa-solid fa-calendar-days"></i> Planned</a>
+                <a href="#"><i class="fa-solid fa-list-check"></i> Tasks</a>
+                <a href="#"><i class="fa-solid fa-spinner"></i> Progress</a>
+            </div>
+            <div class="menu_list">
+                <span>Work</span>
+                <a href="#"><i class="fa-solid fa-timeline"></i>OfficeWork</a>
+                <a href="#"><i class="fa-solid fa-list-ol"></i>Important</a>
+            </div>
+
+            <div class="menu_list">
+                <a href="#"><i class="fa-solid fa-right-from-bracket"></i>logout</a>
+            </div>
+        </div>
+    </nav>
+</div>
