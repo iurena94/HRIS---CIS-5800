@@ -30,7 +30,7 @@
       var count = div.textContent * 1 - 1;
       div.textContent = count;
       if (count <= 0) {
-        location.assign("{% url 'login' %}");
+        location.assign("{% url 'home' %}");
       }
     }, 1000);
   </script>

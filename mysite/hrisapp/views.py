@@ -24,5 +24,10 @@ def dashboard(request):
     id = request.user.username
     return render(request, "dashboard.html",{"id":id}) 
 
+@login_required(login_url="login")
+def profile(request):
+    id = request.user.username
+    return render(request,"profile.html", {"id":id})
+
 def contacts(request):
     return render(request, "")
