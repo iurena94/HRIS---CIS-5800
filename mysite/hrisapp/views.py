@@ -21,13 +21,18 @@ def logout_view(request):
 
 @login_required(login_url="login")
 def dashboard(request):
-    id = request.user.username
-    return render(request, "dashboard.html",{"id":id}) 
+    return render(request, "dashboard.html",userdetails(request)) 
 
 @login_required(login_url="login")
 def profile(request):
-    id = request.user.username
-    return render(request,"profile.html", {"id":id})
+    return render(request,"profile.html", userdetails(request))
 
 def contacts(request):
     return render(request, "")
+
+def userdetails(request):
+    id = request.user.username
+    fname = request.user.first_name
+    lname = request.user.last_name
+    email = request.user.email
+    return {"id":id,"fname":fname,"lname":lname,'email':email}

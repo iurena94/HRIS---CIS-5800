@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .forms import RegisterUserForm
 # Create your views here.
 
 def login_user(request):
@@ -22,17 +23,17 @@ def login_user(request):
 
 def signup(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = RegisterUserForm(request.POST)
         if form.is_valid():
             form.save()
-            username = request.POST['employeeid']
-            password = request.POST['password1']
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             login(request, user)
+            messages.success(request, ("Registration Successful"))
             return redirect("thankyou")
     else:
-        form = UserCreationForm()
-
+        form = RegisterUserForm()
     return render(request, "authenticate/signup.html", {'form':form})
 
 def logout_user(request):
