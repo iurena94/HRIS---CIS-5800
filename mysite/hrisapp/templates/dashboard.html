@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Walmart Portal Dashboard{% endblock %}
+{% block title %}Walmart Portal Dashboard Calendar{% endblock %}
 
 {% block content %}
 <div class="limiterbase">
@@ -11,6 +11,7 @@
             <img src="{% static 'images/icons/Walmart_logo.png' %}" alt="Walmart Logo" width="25%" >
             <p class="p-b-35">Employee Self-Service System</p>
             </div>
+            {% include 'calendar.html' %}
             <div class="login100-form-title p-b-26" >
                 <a class="txt2" href="{% url 'logout' %}">
                     Log out

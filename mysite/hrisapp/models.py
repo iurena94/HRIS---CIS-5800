@@ -14,3 +14,9 @@ class Credential(models.Model):
     lastname = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
     pw = models.CharField(max_length=200)
+    
+class Event(models.Model):
+    title = models.CharField(max_length=200, default=" ", editable=False)
+    description = models.TextField(max_length=600, default=" ", editable=False)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()

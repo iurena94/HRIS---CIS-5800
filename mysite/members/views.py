@@ -13,7 +13,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('dashboard')
+            return redirect('calendar')
         else:
             messages.success(request, ("Error logging in, Try again ..."))
             return redirect('login') 

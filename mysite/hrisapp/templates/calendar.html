@@ -1,0 +1,79 @@
+
+{% load static %}
+
+
+  {% block sytle %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+  
+  <title>Walmart Portal Dashboard Calendar</title>
+  <style>.calendar {
+    width: 100%;
+    margin: auto;
+    font-size: 13px;
+    max-height: 100vh;
+  }
+  .calendar tr, .calendar td {
+    border: 1px solid black;
+  }
+  .calendar th {
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+  }
+  .calendar td {
+    width: 200px;
+    height: 100px;
+    padding: 20px 0px 0px 5px;
+  }
+  .month {
+    font-size: 25px;
+  }
+  .date {
+    font-size: 16px;
+  }
+  ul {
+    height: 100%;
+    padding: 0px 5px 0px 20px;
+  }
+  a {
+    color: #17a2b8;
+  }</style>
+  {% endblock sytle %}
+  {% block nav %}{% include 'navbar.html' %}{% endblock nav %}
+  {% block content %}
+  <div class="limiterbase">
+    <div class="container-base100">
+        <div class="wrap-base100"  style="margin-left:65px;">
+            
+            <div>{{ calendar }}</div>
+            
+            
+        </div>
+    </div>
+</div> 
+   {% endblock content %}
+ 
+  {% block script %}
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+    <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+	<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+	<script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+    {% endblock script %}
+  
+</body>
+</html>

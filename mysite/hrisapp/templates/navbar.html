@@ -5,13 +5,13 @@
             <div class="logo">
                 <img src="{% static 'images/icons/walmart-yellow6.png' %}" alt="Walmart's small logo">
                 <div class="menu_list">
-                    <span style="font-weight: bold; color:black;font-size:15px;"><a href="{% url 'profile' %}">{{fname}} {{lname}}</a></span>
-                    <span>#{{ id }}</span>
+                    <span style="font-weight: bold; color:black;font-size:15px;"><a href="{% url 'profile' %}">{{request.user.first_name}} {{request.user.last_name}}</a></span>
+                    <span>#{{ request.user.username }}</span>
                 </div>
             </div>
             <div class="menu_list">
                 <span>Menu</span>
-                <a href="{% url 'dashboard' %}"><i class="fa-brands fa-dashcube"></i> Dashboard</a>
+                <a href="{'% url 'calendar' %}"><i class="fa-brands fa-dashcube"></i> Dashboard</a>
                 <a href="#"><i class="fa-solid fa-star"></i> Important</a>
                 <a href="#"><i class="fa-solid fa-calendar-days"></i> Planned</a>
                 <a href="#"><i class="fa-solid fa-list-check"></i> Tasks</a>
