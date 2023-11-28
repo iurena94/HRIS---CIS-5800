@@ -41,6 +41,32 @@
   }
   a {
     color: #17a2b8;
+  }
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+  }
+  .btn {
+    outline: none;
+    color: black;
+    background-color: transparent;
+    box-shadow: 0 0 0 0;
+  }
+  .clearfix {
+    margin: 15px;
+  }
+  .form {
+    margin: auto;
+  }
+  .form input, .form select, .form textarea {
+    border-radius: 5px;
+    border: 1px solid #17a2b8;
+    outline: none;
+    background: none;
+    padding: 5px;
+    width: 100%;
   }</style>
   {% endblock sytle %}
   {% block nav %}{% include 'navbar.html' %}{% endblock nav %}
@@ -48,13 +74,18 @@
   <div class="limiterbase">
     <div class="container-base100">
         <div class="wrap-base100"  style="margin-left:65px;">
-            
-            <div>{{ calendar }}</div>
-            
-            
+          <div class="clearfix">
+            <a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Previous Month </a>
+            <a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }}"> Next Month </a>
+            {% if request.user.is_superuser %}
+            <a class="btn btn-info right" href="{% url 'event_new' %}"> New Event </a>
+            {% endif %}
+          </div>
+          
+          {{ calendar }}
         </div>
     </div>
-</div> 
+  </div>
    {% endblock content %}
  
   {% block script %}
