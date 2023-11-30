@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}All User Table{% endblock %}
+
+{% block style %}
+<style>
+    table, tr, td {
+        border: 1px solid black;
+        padding:5px;
+    }
+    table{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    tr:nth-child(even) {
+        background-color: rgb(0,0,0,0.2);
+    }
+</style>
+{% csrf_token %}
+{% endblock style %}
+{% block content %}
+<div class="limiterbase">
+    <div class="container-base100">
+        <div class="wrap-base100"  style="margin-left:65px;">
+            <h1></h1>
+            <table>
+                
+                {% for user in users %}
+                
+                    <tr>
+                        <td> {{ user }} </td>
+                        <td> {{ user.first_name }} </td>
+                        <td> {{ user.last_name }} </td>
+                        <td> {{ user.email }} </td>
+                        <td> Role Unknown </td>
+                        <td style="background: rgb(255,0,0,0.4);"><button onclick="terminateUser({{ user.id }})"> Terminate </button></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <br>
+            <Table><tr><td><button> Print PDF </button></td></tr></Table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    function terminateUser(userId) {
+        if (confirm('Are you sure you want to terminate this user?')) {
+            const csrftoken = getCookie('csrftoken');
+            fetch(`/terminate_user/${userId}/`, {
+                method: 'DELETE',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,  
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                document.getElementById(`userRow_${userId}`).remove();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    }
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
+{% endblock script %}

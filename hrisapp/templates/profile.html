@@ -7,12 +7,12 @@
 <div class="limiterbase">
     <div class="container-base100">
         <div class="wrap-base100"  style="margin-left:65px;">
-            <h1>Hello, {{ fname }} {{ lname }}</h1>
+            <h1>Hello, {{request.user.first_name}} {{request.user.last_name}}</h1>
             <ul>
-                <li><a>Change personal Info</a></li>
-                <li><a>Change password</a></li>
-                <li><a></a></li>
-                <li><a></a></li>
+                <li><a>Change Name</a></li>
+                <li><a>Change Password</a></li>
+                <li><a>Change Email</a></li>
+                <li><a>Change Address</a></li>
             </ul>
         </div>
     </div>

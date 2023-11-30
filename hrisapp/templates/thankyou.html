@@ -30,7 +30,7 @@
       var count = div.textContent * 1 - 1;
       div.textContent = count;
       if (count <= 0) {
-        location.assign("{% url 'home' %}");
+        location.assign("{% url 'calendar' %}");
       }
     }, 1000);
   </script>

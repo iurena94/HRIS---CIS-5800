@@ -1,8 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect, HttpResponseRedirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.http import JsonResponse
 from datetime import datetime, date, timedelta
 from django.views import generic
 from django.urls import reverse
@@ -43,6 +45,19 @@ def userdetails(request):
     lname = request.user.last_name
     email = request.user.email
     return {"id":id,"fname":fname,"lname":lname,'email':email}
+
+@login_required(login_url="login")
+@staff_member_required
+def allusers(request):
+    user = get_user_model()
+    users = user.objects.all()
+    return render(request, "allusers.html",{"users":users})
+
+@staff_member_required
+def terminate_user(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    user.delete()
+    return JsonResponse({'message': 'User terminated successfully'})
 
 class CalendarView(generic.ListView):
     model = Event
