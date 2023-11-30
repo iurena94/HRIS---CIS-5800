@@ -34,7 +34,7 @@
                         <td> {{ user.last_name }} </td>
                         <td> {{ user.email }} </td>
                         <td> Role Unknown </td>
-                        <td style="background: rgb(255,0,0,0.4);"><button onclick="terminateUser({{ user.id }})"> Terminate </button></td>
+                        <td style="background: rgb(255,0,0,0.4);"><button onclick="terminateUser('{{ user.id }}')"> Terminate </button></td>
                     </tr>
                 {% endfor %}
             </table>

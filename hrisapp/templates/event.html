@@ -1,7 +1,7 @@
 {% extends "calendar.html" %}
 {% block title %}
 Event
-{% endblock %}
+{% endblock title %}
 
 {% block content %}
 <div class="limiterbase">
@@ -30,7 +30,9 @@ Event
                 {% csrf_token %}
                 <table class="form form-table">
                     {{ form }}
+                    {% if request.user.is_superuser %}
                     <tr><td colspan="2"><button type="submit" class="btn btn-info right"> Submit </button></td></tr>
+                    {% endif %}
                 </table>
             </form>
         </div>
