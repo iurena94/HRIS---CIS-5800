@@ -12,3 +12,8 @@
  3. install packages `pip install -r requirements.txt`
 
  4. Run `python manage.py runserver`
+
+## Credentials 
+| Usernames| admin | 001 | 002 |
+| :---: | :---: | :---: | :---: |
+| Passwords | root1234 | testing001 | testing002 |
