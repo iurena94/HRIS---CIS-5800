@@ -17,12 +17,15 @@
                 <a href="#"><i class="fa-solid fa-list-check"></i> Tasks</a>
                 <a href="#"><i class="fa-solid fa-spinner"></i> Progress</a>
             </div>
+            {% if request.user.userprofile.role != 'Employee' %}
             <div class="menu_list">
                 <span>Users</span>
                 <a href="{% url 'allusers' %}"><i class="fa-solid fa-timeline"></i>List</a>
+                {% if request.user.userprofile.role != 'Temp Manager' %}
                 <a href="{% url 'adduser' %}"><i class="fa-solid fa-list-ol"></i>Create</a>
+                {% endif %}
             </div>
-
+            {% endif %}
             <div class="menu_list">
                 <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
             </div>

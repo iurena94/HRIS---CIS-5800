@@ -100,7 +100,11 @@ def event(request, event_id=None):
         instance = Event()
 
     form = EventForm(request.POST or None, instance=instance)
+    
+
     if request.POST and form.is_valid():
+        form = form.save(commit=False)
+        form.From = request.user.username
         form.save()
         return HttpResponseRedirect(reverse('calendar'))
     return render(request, 'event.html', {'form': form})

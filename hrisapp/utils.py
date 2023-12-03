@@ -19,9 +19,9 @@ class Calendar(HTMLCalendar):
 		# filtering events by user id
 		id = getuserid(request)
 		for event in events_per_day:
-			if id in event.description:
+			if id in event.receiver:
 				d += f'<li> {event.get_html_url} </li>'
-			elif 'ALL' in event.description:
+			elif 'ALL' in event.receiver:
 				d += f'<li> {event.get_html_url} </li>'
 			elif id == 'admin':
 				d += f'<li> {event.get_html_url} </li>'

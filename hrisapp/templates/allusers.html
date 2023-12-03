@@ -35,7 +35,12 @@
                         <!--{% if user.role != request.user.role %}-->
                         <td> Update Role </td>
                         <!--{% endif %}-->
+                        {% if user != request.user %}
                         <td style="background: rgb(255,0,0,0.4);"><button onclick="terminateUser('{{ user.id }}')"> Terminate </button></td>
+                        {% endif %}
+                        {% if user == request.user %}
+                        <td> ---------- </td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>

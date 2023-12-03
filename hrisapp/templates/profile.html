@@ -8,6 +8,8 @@
     <div class="container-base100">
         <div class="wrap-base100"  style="margin-left:65px;">
             <h1>Hello, {{request.user.first_name}} {{request.user.last_name}}</h1>
+            <h1>Your Role is {{request.user.userprofile.role}}</h1>
+
             <ul>
                 <li><a>Change Name</a></li>
                 <li><a>Change Password</a></li>
