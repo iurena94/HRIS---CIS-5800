@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import Contact, Credential, Event
+from .models import Event
 
 # Register your models here.
-admin.site.register(Contact)
-admin.site.register(Credential)
 admin.site.register(Event)
