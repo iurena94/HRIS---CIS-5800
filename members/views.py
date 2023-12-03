@@ -39,3 +39,17 @@ def signup(request):
 def logout_user(request):
     logout(request)
     return redirect("home")
+
+def adduser(request):
+    if request.method == "POST":
+        form = RegisterUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            messages.success(request, ("Registration Successful"))
+            return redirect("adduser")
+    else:
+        form = RegisterUserForm()
+    return render(request, "authenticate/adduser.html", {'form':form})
