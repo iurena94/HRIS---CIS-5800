@@ -5,6 +5,9 @@ from .models import Event
 def getuserid(request):
 	return request.user.username
 
+def getuserrole(request):
+	return request.user.userprofile.role
+
 class Calendar(HTMLCalendar):
 	def __init__(self, year=None, month=None):
 		self.year = year
@@ -18,12 +21,13 @@ class Calendar(HTMLCalendar):
 		d = ''
 		# filtering events by user id
 		id = getuserid(request)
+		role = getuserrole(request)
 		for event in events_per_day:
 			if id in event.receiver:
 				d += f'<li> {event.get_html_url} </li>'
 			elif 'ALL' in event.receiver:
 				d += f'<li> {event.get_html_url} </li>'
-			elif id == 'admin':
+			elif id == 'admin' or role == "Manager":
 				d += f'<li> {event.get_html_url} </li>'
 
 		if day != 0:
