@@ -7,6 +7,13 @@
  ## How to access
  1. Clone this repository `git clone link_here`
 
- 2. Enter the outermost 'mysite' directory
+ 2. Enter the HRIS_CIS-5800 directory
+    
+ 3. install packages `pip install -r requirements.txt`
 
- 3. Run `python manage.py runserver`
+ 4. Run `python manage.py runserver`
+
+## Credentials 
+| Usernames| admin | 001 | 002 |
+| :---: | :---: | :---: | :---: |
+| Passwords | root1234 | testing001 | testing002 |
