@@ -3,18 +3,73 @@
 
 {% block title %}Walmart Portal Profile{% endblock %}
 
+{% block style %}
+<style>
+.profileforms{
+    padding:25px;
+    background:rgb(0, 0, 0,0.1);
+    margin:15px;
+    border-radius: 25px;}
+.center{
+    text-align: center;
+}
+.right{
+    text-align: right;
+    position: absolute;
+    right: 125px;
+}
+</style>
+{% endblock style %}
+
 {% block content %}
 <div class="limiterbase">
     <div class="container-base100">
         <div class="wrap-base100"  style="margin-left:65px;">
             <h1>Hello, {{request.user.first_name}} {{request.user.last_name}}</h1>
             <h3>Your Role is: {{request.user.userprofile.role}}</h1>
+            
+            <div class="profileforms">
+                <form method="post" action="{% url 'update_name' %}">
+                    {% csrf_token %}
+                    <h3 class="center">Change Name</h3>
+                    <h5 class="right">Current: {{ request.user.first_name }} {{request.user.last_name}}</h5>
+                    <div class="wrap-input100" data-validate = "Enter First Name">
+                        <input class="input100" type="text" name="newfname">
+                        <span class="focus-input100" data-placeholder="First Name"></span>
+                        
+                    </div>
+                    <div class="wrap-input100" data-validate = "Enter Last Name">
+                        <input class="input100" type="text" name="newlname">
+                        <span class="focus-input100" data-placeholder="Last Name"></span>
+                    </div>
+                    <button type="submit">Update Name</button>
+                </form>
+            </div>
+            
+            <div class="profileforms">
+                <form method="post" action="{% url 'update_email' %}">
+                    {% csrf_token %}
+                    <h3 class="center">Change Email</h3>
+                    <h5 class="right">Current: {{ request.user.email }}</h5>
+                    <div class="wrap-input100" data-validate = "Enter Email">
+                        <input class="input100" type="text" name="newemail">
+                        <span class="focus-input100" data-placeholder="New Email"></span>
+                    </div>
+                    <button type="submit">Update Email</button>
+                </form>
+            </div>
 
-            <ul>
-                <li><a>Change Name</a></li>
-                <li><a>Change Password</a></li>
-                <li><a>Change Email</a></li>
-            </ul>
+            <div class="profileforms">
+                <form method="post" action="{% url 'update_password' %}">
+                    {% csrf_token %}
+                    <h3 class="center">Change Password</h3>
+                    <div class="wrap-input100" data-validate = "Enter New Password">
+                        <input class="input100" type="text" name="newpassword">
+                        <span class="focus-input100" data-placeholder="New Password"></span>
+                    </div>
+                    <button type="submit">Update Password</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

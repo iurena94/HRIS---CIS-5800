@@ -54,21 +54,42 @@ def allusers(request):
 
 def update_user_role(request, user_id):
     user = get_object_or_404(User, pk=user_id)
-
     if request.method == 'POST':
-        new_role = request.POST.get('new_role')  # Assuming you have a form field named 'new_role'
+        new_role = request.POST.get('new_role')
         user.userprofile.role = new_role
         user.userprofile.save()
-
-        # You can add a success message if needed
-        messages.success(request, 'User role updated successfully.')
-
-    return redirect('allusers')  # Redirect back to the allusers view
+    return redirect('allusers') 
 
 def terminate_user(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     user.delete()
     return JsonResponse({'message': 'User terminated successfully'})
+
+def update_name(request):
+    if request.method == 'POST':
+        new_fname = request.POST.get('newfname')
+        new_lname = request.POST.get('newlname')
+        user = request.user
+        user.first_name = new_fname
+        user.last_name = new_lname
+        user.save()
+    return redirect('profile')
+
+def update_email(request):
+    if request.method == 'POST':
+        new_email = request.POST.get('newemail')
+        user = request.user
+        user.email = new_email
+        user.save()
+    return redirect('profile')
+
+def update_password(request):
+    if request.method == 'POST':
+        new_password = request.POST.get('newpassword')
+        user = request.user
+        user.set_password(new_password)
+        user.save()
+    return redirect('profile')
 
 class CalendarView(generic.ListView):
     model = Event
@@ -112,7 +133,6 @@ def event(request, event_id=None):
 
     form = EventForm(request.POST or None, instance=instance)
     
-
     if request.POST and form.is_valid():
         form = form.save(commit=False)
         form.From = request.user.username
