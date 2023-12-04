@@ -33,7 +33,7 @@
                         <td> {{ user.email }} </td>
                         <td> {{ user.userprofile.role }} </td>
                         {% if request.user.userprofile.role == 'Manager' or request.user.userprofile.role == 'Temp Manager' or request.user.userprofile.role == 'Admin'%}
-                        {% if user.userprofile.role == 'Manager' or user.userprofile.role == 'Admin' or user.userprofile.role == request.user.userprofile.role  %}
+                            {% if user.userprofile.role == 'Admin' or user.userprofile.role == request.user.userprofile.role  %}
                             <td> ----------- </td>
                             {% else %}
                             <td style="background: rgb(0,0,255,0.2);">

@@ -27,7 +27,7 @@ class Calendar(HTMLCalendar):
 				d += f'<li> {event.get_html_url} </li>'
 			elif 'ALL' in event.receiver:
 				d += f'<li> {event.get_html_url} </li>'
-			elif id == 'admin' or role == "Manager":
+			elif id == 'admin' or (role == "Manager" and 'Admin' not in event.receiver):
 				d += f'<li> {event.get_html_url} </li>'
 
 		if day != 0:

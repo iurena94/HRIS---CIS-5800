@@ -74,6 +74,7 @@
   <div class="limiterbase">
     <div class="container-base100">
         <div class="wrap-base100"  style="margin-left:65px;">
+          <h1 style="text-align:center;">Welcome back {{ request.user.first_name }}!</h1>
           <div class="clearfix">
             
             <a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Previous Month </a>
