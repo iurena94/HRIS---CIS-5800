@@ -47,13 +47,24 @@ def userdetails(request):
     return {"id":id,"fname":fname,"lname":lname,'email':email}
 
 @login_required(login_url="login")
-@staff_member_required
 def allusers(request):
     user = get_user_model()
     users = user.objects.all()
     return render(request, "allusers.html",{"users":users})
 
-@staff_member_required
+def update_user_role(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+
+    if request.method == 'POST':
+        new_role = request.POST.get('new_role')  # Assuming you have a form field named 'new_role'
+        user.userprofile.role = new_role
+        user.userprofile.save()
+
+        # You can add a success message if needed
+        messages.success(request, 'User role updated successfully.')
+
+    return redirect('allusers')  # Redirect back to the allusers view
+
 def terminate_user(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     user.delete()

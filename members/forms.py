@@ -29,18 +29,9 @@ class CreateUserForm(forms.ModelForm):
             ('Manager', 'Manager'),
             ('Human Resource Officer', 'Human Resource Officer'),
             ('Temp Manager', 'Temp Manager'),
-            )
+            ('Admin', 'Admin'),)
     
     role = forms.ChoiceField(choices=OPTIONS, widget=forms.Select(attrs={'class': 'form-control', 'placeholder':'Role'}))
     class Meta:
         model = UserProfile
         fields = ('role',)
-
-    def __init__(self, *args, **kwargs):
-        super(CreateUserForm, self).__init__(*args, **kwargs)
-
-        # Dynamically update choices based on superuser status
-        if self.instance.user.is_superuser:
-            self.fields['role'].choices = self.OPTIONS + (('Admin', 'Admin'),)
-        else:
-            self.fields['role'].choices = self.OPTIONS

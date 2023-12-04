@@ -6,7 +6,7 @@ from django.urls import reverse
     
 class Event(models.Model):
     title = models.CharField(max_length=200)
-    From = models.CharField(max_length=30, blank=False, default='Admin')
+    From = models.CharField(max_length=30, blank=False, default='Admin', editable=False)
     receiver = models.CharField(max_length=200, default='ALL')
     description = models.TextField()
     start_time = models.DateTimeField()

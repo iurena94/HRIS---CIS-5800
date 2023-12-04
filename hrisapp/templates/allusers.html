@@ -31,15 +31,33 @@
                         <td> {{ user.first_name }} </td>
                         <td> {{ user.last_name }} </td>
                         <td> {{ user.email }} </td>
-                        <td> Role Unknown </td>
-                        <!--{% if user.role != request.user.role %}-->
-                        <td> Update Role </td>
-                        <!--{% endif %}-->
-                        {% if user != request.user %}
-                        <td style="background: rgb(255,0,0,0.4);"><button onclick="terminateUser('{{ user.id }}')"> Terminate </button></td>
+                        <td> {{ user.userprofile.role }} </td>
+                        {% if request.user.userprofile.role == 'Manager' or request.user.userprofile.role == 'Temp Manager' or request.user.userprofile.role == 'Admin'%}
+                        {% if user.userprofile.role == 'Manager' or user.userprofile.role == 'Admin' or user.userprofile.role == request.user.userprofile.role  %}
+                            <td> ----------- </td>
+                            {% else %}
+                            <td style="background: rgb(0,0,255,0.2);">
+                                <form method="post" action="{% url 'update_user_role' user.id %}">
+                                    {% csrf_token %}
+                                    <select name="new_role">
+                                        <option value="Employee">Employee</option>
+                                        <option value="Manager">Manager</option>
+                                        <option value="Human Resource Officer">Human Resource Officer</option>
+                                        <option value="Temp Manager">Temp Manager</option>
+                                        <option value="Admin">Admin</option>
+                                    </select>
+                                    <button type="submit">Update Role</button>
+                                </form>
+                            </td>
+                            {% endif %}
                         {% endif %}
-                        {% if user == request.user %}
-                        <td> ---------- </td>
+                        {% if request.user.userprofile.role == 'Admin' or request.user.userprofile.role == 'Human Resource Officer' %}
+                            {% if user != request.user %}
+                            <td style="background: rgb(255,0,0,0.4);"><button onclick="terminateUser('{{ user.id }}')"> Terminate </button></td>
+                            {% endif %}
+                            {% if user == request.user %}
+                            <td> ---------- </td>
+                            {% endif %}
                         {% endif %}
                     </tr>
                 {% endfor %}

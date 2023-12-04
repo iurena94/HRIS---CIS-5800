@@ -7,15 +7,24 @@
                 <div class="menu_list">
                     <span style="font-weight: bold; color:black;font-size:15px;"><a href="{% url 'profile' %}">{{request.user.first_name}} {{request.user.last_name}}</a></span>
                     <span>#{{ request.user.username }}</span>
+                    
                 </div>
             </div>
             <div class="menu_list">
                 <span>Menu</span>
-                <a href="{% url 'calendar' %}"><i class="fa-brands fa-dashcube"></i> Dashboard</a>
-                <a href="#"><i class="fa-solid fa-star"></i> Important</a>
-                <a href="#"><i class="fa-solid fa-calendar-days"></i> Planned</a>
-                <a href="#"><i class="fa-solid fa-list-check"></i> Tasks</a>
-                <a href="#"><i class="fa-solid fa-spinner"></i> Progress</a>
+                <a href="{% url 'calendar' %}"><i class="fa-solid fa-calendar-days"></i>Calendar</a>
+                <a href="#"><i class="fa-solid fa-star"></i>Events</a>
+                {% if request.user.userprofile.role != 'Employee' %}
+                <a href="{% url 'event_new' %}"><i class="fa-solid fa-list-check"></i>Scheduling</a>
+                <a href="#"><i class="fa-brands fa-dashcube"></i>Requests</a>
+                {% else %}
+                <a href="#"><i class="fa-solid fa-list-check"></i>Request</a>
+                {% endif %}
+
+
+                
+                <a href="#"><i class="fa-solid fa-star"></i>Inbox</a>
+               <!-- <a href="#"><i class="fa-solid fa-spinner"></i> Progress</a>-->
             </div>
             {% if request.user.userprofile.role != 'Employee' %}
             <div class="menu_list">

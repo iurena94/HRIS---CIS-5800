@@ -78,7 +78,7 @@
             
             <a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Previous Month </a>
             <a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }}"> Next Month </a>
-            {% if request.user.is_superuser %}
+            {% if request.user.userprofile.role != 'Employee' %}
             <a class="btn btn-info right" href="{% url 'event_new' %}"> New Event </a>
             {% endif %}
           </div>
