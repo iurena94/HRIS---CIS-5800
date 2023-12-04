@@ -14,6 +14,7 @@
  4. Run `python manage.py runserver`
 
 ## Credentials 
-| Usernames| admin | 001 | 002 |
-| :---: | :---: | :---: | :---: |
-| Passwords | root1234 | testing001 | testing002 |
+| Usernames| admin | 001 | 002 | 003 | 004 | 005 | 007 |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Passwords | root1234 | testing001 | testing002 | testing003 | testing004 | testing005 | testing007 |
+| Roles | Admin | Manager | Employee | Temp Manager | Human Resource Officer | Employee | Employee |
