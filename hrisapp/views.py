@@ -15,6 +15,14 @@ from .utils import Calendar
 from .forms import EventForm
 # Create your views here.
 
+#returns current users' role
+def userrole(request):
+    return request.user.userprofile.role
+
+# returns current users' id
+def userid(request):
+    return request.user.username  # user's username is there employee id
+
 @login_required(login_url="login")
 def home(request):
     return render(request, "calendar.html",userdetails(request))
@@ -23,6 +31,15 @@ def home(request):
 def thankyou(request):
     return render(request, "thankyou.html")
 
+# all events page
+def allevents(request):
+    my_role = userrole(request)
+    id = str(userid(request))
+    is_emp_or_hr = my_role in ['Employee', "Human Resource Officer"] 
+    is_temp_or_manager = my_role in ["Temp Manager",'Manager'] 
+    events = Event.objects.all()
+    
+    return render(request, "allevents.html", {'events':events, 'my_role':my_role, 'id':id, 'is_emp_or_hr':is_emp_or_hr,'is_temp_or_manager':is_temp_or_manager})
 
 def logout_view(request):
     logout(request)

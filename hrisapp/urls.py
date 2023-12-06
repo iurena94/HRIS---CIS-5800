@@ -16,5 +16,6 @@ urlpatterns = [
     path('update_name/', views.update_name, name='update_name'),
     path('update_email/', views.update_email, name='update_email'),
     path('update_password/', views.update_password, name='update_password'),
+    path('allevents',views.allevents, name='allevents'),
 
 ]
