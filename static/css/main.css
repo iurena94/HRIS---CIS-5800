@@ -257,7 +257,7 @@ iframe {
 .wrap-base100 {
   width: 95%;
   min-width: 350px;
-  height: 95vh;
+  height: 95vh;  /* possibly here */
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
