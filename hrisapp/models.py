@@ -21,3 +21,16 @@ class Event(models.Model):
     def get_url(self):
         url = reverse('event_edit', args=(self.id,))
         return url
+
+class Request_(models.Model):
+    OPTIONS = (
+            ('Manager', 'Manager'),
+            ('Human Resources', 'Human Resources'),)
+    TOPIC_OPTIONS= (
+            ('Schedule Change', 'Schedule Change'),
+            ('Availability', 'Availability'),
+            ('Request Meeting', 'Request Meeting'),)
+    sendto = models.CharField(max_length=30, choices=OPTIONS)
+    From = models.CharField(max_length=30, blank=False, editable=False)
+    topic = models.CharField(max_length=30, choices=TOPIC_OPTIONS)
+    content = models.TextField()

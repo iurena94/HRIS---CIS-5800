@@ -1,5 +1,5 @@
 from django.forms import ModelForm, DateInput
-from .models import Event
+from .models import Event, Request_
 
 class EventForm(ModelForm):
   class Meta:
@@ -17,3 +17,12 @@ class EventForm(ModelForm):
     # input_formats parses HTML5 datetime-local input to datetime field
     self.fields['start_time'].input_formats = ('%Y-%m-%dT%H:%M',)
     self.fields['end_time'].input_formats = ('%Y-%m-%dT%H:%M',)
+
+class RequestForm(ModelForm):
+  class Meta:
+    model = Request_
+    fields = '__all__'
+    exclude = ['From']
+
+    def __init__(self, *args, **kwargs):
+      super(EventForm, self).__init__(*args, **kwargs)
