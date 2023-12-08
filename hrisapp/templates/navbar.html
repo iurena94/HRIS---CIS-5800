@@ -24,7 +24,7 @@
 
                 
                 <a href="#"><i class="fa-solid fa-star"></i>Inbox</a>
-               <!-- <a href="#"><i class="fa-solid fa-spinner"></i> Progress</a>-->
+               <!-- <a href="#"><i class="fa-solid fa-spinner"></i> Feedback </a>-->
             </div>
             {% if request.user.userprofile.role != 'Employee' %}
             <div class="menu_list">
@@ -35,6 +35,11 @@
                 {% endif %}
             </div>
             {% endif %}
+
+            <div class="menu_list">
+                <a href="#"><i class="fa-solid fa-spinner"></i> Feedback </a>
+            </div>
+            
             <div class="menu_list">
                 <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
             </div>
