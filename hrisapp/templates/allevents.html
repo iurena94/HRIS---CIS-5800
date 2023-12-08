@@ -38,6 +38,17 @@
         width: 50px;
     }
 
+    .edit {
+        background-color: rgb(5, 5, 5, 0.2);
+        text-align: center;
+        text-decoration: none;
+    }
+    .delete {
+        background-color: rgb(255, 0, 0, 0.1);
+        text-align: center;
+        text-decoration: none;
+    }
+
 </style>
 {% csrf_token %}
 {% endblock style %}
@@ -109,8 +120,8 @@
                                 </tr>
                                 {% if is_temp_or_manager or id == "Admin" %}
                                 <tr>
-                                    <td>Edit</td>
-                                    <td>Delete</td>
+                                    <td class="edit"><<a href="{{ event.get_url }}">Edit</a></td>
+                                    <td class="delete">Delete</td>
                                 </tr>
                                 {% endif %}
                             </table>
@@ -140,8 +151,8 @@
                                 <td>{{ event.end_time }}</td>
                             </tr>
                             <tr>
-                                <td>Edit</td>
-                                <td>Delete</td>
+                                <td class="edit"><a href="{{ event.get_url }}">Edit</a></td>
+                                <td class="delete">Delete</td>
                             </tr>
                         </table>
                     </div>
