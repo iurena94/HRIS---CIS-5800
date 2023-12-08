@@ -82,6 +82,7 @@ def terminate_user(request, user_id):
     user.delete()
     return JsonResponse({'message': 'User terminated successfully'})
 
+
 def update_name(request):
     if request.method == 'POST':
         new_fname = request.POST.get('newfname')
@@ -156,3 +157,8 @@ def event(request, event_id=None):
         form.save()
         return HttpResponseRedirect(reverse('calendar'))
     return render(request, 'event.html', {'form': form})
+
+def terminate_event(request, event_id):
+    instance = get_object_or_404(Event, pk=event_id)
+    instance.delete()
+    return JsonResponse({'message': 'Event deleted successfully'})
