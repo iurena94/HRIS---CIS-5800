@@ -5,6 +5,7 @@
  End-to-end web application to schedule, manage tasks, and bridge communication between HR Officers, Managers, and Employees.
 
  ## How to access
+ *Pre-req - Install python, pip, Git*
  1. Clone this repository `git clone link_here`
 
  2. Enter the HRIS_CIS-5800 directory
@@ -12,6 +13,8 @@
  3. install packages `pip install -r requirements.txt`
 
  4. Run `python manage.py runserver`
+
+    *Ensure django and django-widget-tweaks is installed with `pip install django-widget-tweaks` or `pip install django`*
 
 ## Credentials 
 | Usernames| admin | 001 | 002 | 003 | 004 | 005 | 007 |
