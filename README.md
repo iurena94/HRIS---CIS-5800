@@ -18,3 +18,16 @@
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | Passwords | root1234 | testing001 | testing002 | testing003 | testing004 | testing005 | testing007 |
 | Roles | Admin | Manager | Employee | Temp Manager | Human Resource Officer | Employee | Employee |
+
+## Roles Explained
+*Features not implemented are italicized*
+
+All Users - Access to the calendar, change user info, view list of events, login, create an employee account, *submit feedback*  
+
+Managers - Can create/edit events(shifts), Promote users, create users with any role, *view requests* - View every event
+
+Temp-man - Can create/edit events, view every event
+
+Human Resource Officer - Can create/edit events(meetings), Terminate users, create users with any role, *view requests* 
+
+Employee - *Submit a request*, view events directed towards them
