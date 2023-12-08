@@ -97,6 +97,7 @@
                     'X-CSRFToken': csrftoken,  
                 },
             })
+            // Termination confirmation
             .then(response => response.json())
             .then(data => {
                 alert(data.message);
