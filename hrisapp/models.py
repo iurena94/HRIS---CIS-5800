@@ -22,7 +22,7 @@ class Event(models.Model):
         url = reverse('event_edit', args=(self.id,))
         return url
 
-class Request_(models.Model):
+class Request(models.Model):
     OPTIONS = (
             ('Manager', 'Manager'),
             ('Human Resources', 'Human Resources'),)
