@@ -34,3 +34,8 @@ class Request(models.Model):
     From = models.CharField(max_length=30, blank=False, editable=False)
     topic = models.CharField(max_length=30, choices=TOPIC_OPTIONS)
     content = models.TextField()
+
+class Feedback(models.Model):
+    From = models.CharField(max_length=30, blank=False, editable=False)
+    topic = models.CharField(max_length=200)
+    content = models.TextField()

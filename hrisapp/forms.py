@@ -1,5 +1,5 @@
 from django.forms import ModelForm, DateInput
-from .models import Event, Request
+from .models import Event, Request, Feedback
 
 class EventForm(ModelForm):
   class Meta:
@@ -21,6 +21,15 @@ class EventForm(ModelForm):
 class RequestForm(ModelForm):
   class Meta:
     model = Request
+    fields = '__all__'
+    exclude = ['From']
+
+    def __init__(self, *args, **kwargs):
+      super(EventForm, self).__init__(*args, **kwargs)
+
+class FeedbackForm(ModelForm):
+  class Meta:
+    model = Feedback
     fields = '__all__'
     exclude = ['From']
 
