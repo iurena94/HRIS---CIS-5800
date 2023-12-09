@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterUserForm, CreateUserForm
+from .models import UserProfile
 # Create your views here.
 
 def login_user(request):
@@ -24,18 +25,13 @@ def login_user(request):
 def signup(request):
     if request.method == "POST":
         form = RegisterUserForm(request.POST)
-        # roleform = CreateUserForm(request.POST)
-        if form.is_valid(): # and roleform.is_valid():
-            user = form.save()
-            # role = roleform.save(commit=False)
-            # role.user = user
-            # role.role = 'Employee'
-            
-
+        if form.is_valid():
+            newuser = form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            login(request, user)
+            newuser = authenticate(username=username, password=password)
+            login(request, newuser)
+            UserProfile.objects.create(user=request.user, role='Employee')
             messages.success(request, ("Registration Successful"))
             return redirect("thankyou")
     else:
