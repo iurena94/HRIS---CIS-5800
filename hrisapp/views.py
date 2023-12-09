@@ -23,11 +23,12 @@ def userrole(request):
 def userid(request):
     return request.user.username  # user's username is there employee id
 
+# redirects the calender when calling for Home page
 @login_required(login_url="login")
 def home(request):
     return render(request, "calendar.html",userdetails(request))
 
-
+# renders thank you page
 def thankyou(request):
     return render(request, "thankyou.html")
 
@@ -41,21 +42,17 @@ def allevents(request):
     
     return render(request, "allevents.html", {'events':events, 'my_role':my_role, 'id':id, 'is_emp_or_hr':is_emp_or_hr,'is_temp_or_manager':is_temp_or_manager})
 
-def logout_view(request):
-    logout(request)
-    return render(request, "index.html")
-
+# renders calender page
 @login_required(login_url="login")
 def dashboard(request):
     return render(request, "calendar.html",userdetails(request)) 
 
+# renders profile page
 @login_required(login_url="login")
 def profile(request):
     return render(request,"profile.html", userdetails(request))
 
-def contacts(request):
-    return render(request, "")
-
+# Call to retrieve basic information from users
 def userdetails(request):
     id = request.user.username
     fname = request.user.first_name
@@ -63,26 +60,32 @@ def userdetails(request):
     email = request.user.email
     return {"id":id,"fname":fname,"lname":lname,'email':email}
 
+# renders every user
 @login_required(login_url="login")
 def allusers(request):
+    # gets every object from the user model
     user = get_user_model()
     users = user.objects.all()
     return render(request, "allusers.html",{"users":users})
 
+# updates the role of a user
 def update_user_role(request, user_id):
     user = get_object_or_404(User, pk=user_id)
+    # if user submits an update
     if request.method == 'POST':
+        # the assosiated user's role is updated
         new_role = request.POST.get('new_role')
         user.userprofile.role = new_role
         user.userprofile.save()
     return redirect('allusers') 
 
+# Deletes a user
 def terminate_user(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     user.delete()
     return JsonResponse({'message': 'User terminated successfully'})
 
-
+# updates user's name in the profile
 def update_name(request):
     if request.method == 'POST':
         new_fname = request.POST.get('newfname')
@@ -93,6 +96,7 @@ def update_name(request):
         user.save()
     return redirect('profile')
 
+# updates user's email in the profile
 def update_email(request):
     if request.method == 'POST':
         new_email = request.POST.get('newemail')
@@ -101,6 +105,7 @@ def update_email(request):
         user.save()
     return redirect('profile')
 
+# updates user's password in the profile
 def update_password(request):
     if request.method == 'POST':
         new_password = request.POST.get('newpassword')
@@ -109,10 +114,12 @@ def update_password(request):
         user.save()
     return redirect('profile')
 
+# Calender for the dashboard
 class CalendarView(generic.ListView):
     model = Event
     template_name = 'calendar.html'
 
+    # gets the days for the previous, current, and next month
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         d = get_date(self.request.GET.get('month', None))
@@ -123,18 +130,21 @@ class CalendarView(generic.ListView):
         context['next_month'] = next_month(d)
         return context
 
+# determines the date
 def get_date(req_day):
     if req_day:
         year, month = (int(x) for x in req_day.split('-'))
         return date(year, month, day=1)
     return datetime.today()
 
+# determines the previous month
 def prev_month(d):
     first = d.replace(day=1)
     prev_month = first - timedelta(days=1)
     month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
     return month
 
+# determines the next month
 def next_month(d):
     days_in_month = calendar.monthrange(d.year, d.month)[1]
     last = d.replace(day=days_in_month)
@@ -142,6 +152,7 @@ def next_month(d):
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
 
+# Create Event object
 def event(request, event_id=None):
     instance = Event()
     if event_id:
@@ -158,6 +169,7 @@ def event(request, event_id=None):
         return HttpResponseRedirect(reverse('calendar'))
     return render(request, 'event.html', {'form': form})
 
+# delete Event object
 def terminate_event(request, event_id):
     instance = get_object_or_404(Event, pk=event_id)
     instance.delete()

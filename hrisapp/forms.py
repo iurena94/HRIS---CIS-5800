@@ -18,6 +18,7 @@ class EventForm(ModelForm):
     self.fields['start_time'].input_formats = ('%Y-%m-%dT%H:%M',)
     self.fields['end_time'].input_formats = ('%Y-%m-%dT%H:%M',)
 
+# request form for employees
 class RequestForm(ModelForm):
   class Meta:
     model = Request
@@ -27,6 +28,7 @@ class RequestForm(ModelForm):
     def __init__(self, *args, **kwargs):
       super(EventForm, self).__init__(*args, **kwargs)
 
+# feedback form for all users
 class FeedbackForm(ModelForm):
   class Meta:
     model = Feedback
