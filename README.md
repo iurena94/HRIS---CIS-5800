@@ -25,11 +25,11 @@
 ## Roles Explained
 *Features not implemented are italicized*
 
-All Users - Access to the calendar, change user info, view list of events, login, create an employee account, *submit feedback*  
+All Users - Access to the calendar, change user info, view list of events, login, create an employee account, *submit feedback*, *send messages*  
 
 Managers - Can create/edit events(shifts), Promote users, create users with any role, *view requests* - View every event
 
-Temp-man - Can create/edit events, view every event
+Temp-manager - Can create/edit events, view every event
 
 Human Resource Officer - Can create/edit events(meetings), Terminate users, create users with any role, *view requests* 
 
