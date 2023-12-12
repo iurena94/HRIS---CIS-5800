@@ -18,7 +18,7 @@
                 <a href="{% url 'event_new' %}"><i class="fa-solid fa-list-check"></i>Scheduling</a>
                 <a href="#"><i class="fa-brands fa-dashcube"></i>Requests</a>
                 {% else %}
-                <a href="#"><i class="fa-solid fa-list-check"></i>Request</a>
+                <a href="{% url 'requestsform' %}"><i class="fa-solid fa-list-check"></i>Request</a>
                 {% endif %}
 
 
