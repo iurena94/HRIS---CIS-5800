@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}All User Table{% endblock %}
+
+{% block style %}
+<style>
+    .wrap-base100 {
+        width: 95%;
+        min-width: 350px;
+        min-height: 95vh;
+        height: 100%;  
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 77px 55px 33px 55px;
+        box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+        -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+        -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+    table, tr, td {
+        border: 1px solid #ddd;
+        padding:5px;
+    }
+    table{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    tr:nth-child(even) {
+        background-color: rgb(0,0,0,0.2);
+    }
+</style>
+{% csrf_token %}
+{% endblock style %}
+{% block content %}
+<div class="limiterbase">
+    <div class="container-base100">
+        <div class="wrap-base100"  style="margin-left:65px;">
+            <h1></h1>
+            <table>
+                {% for req in reqs %}
+                    {% if user.userprofile.role == 'Human Resource Officer'%}
+                        {% if req.sendto == "Human Resources" %}
+                            <tr>
+                                <td>{{ req.From }}</td>
+                                <td>{{ req.topic }}</td>
+                                <td>{{ req.content }}</td>
+                            </tr>
+                        {% endif %}
+                    {% else %}
+                        {% if req.sendto == "Manager" %}
+                            <tr>
+                                <td>{{ req.From }}</td>
+                                <td>{{ req.topic }}</td>
+                                <td>{{ req.content }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endif %}
+
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock script %}
