@@ -185,6 +185,8 @@ def requestsform(request):
         form = RequestForm(request.POST)
         # if the forms are valid, create the user
         if form.is_valid():
+            form = form.save(commit=False)
+            form.From = request.user.username
             form.save()
             return redirect("requestsform")
     else:
