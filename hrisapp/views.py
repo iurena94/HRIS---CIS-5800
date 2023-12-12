@@ -12,7 +12,7 @@ from django.utils.safestring import mark_safe
 import calendar
 from .models import *
 from .utils import Calendar
-from .forms import EventForm
+from .forms import EventForm, RequestForm, FeedbackForm
 # Create your views here.
 
 #returns current users' role
@@ -114,6 +114,7 @@ def update_password(request):
         user.save()
     return redirect('profile')
 
+# -----------------------------Calender--------------------------
 # Calender for the dashboard
 class CalendarView(generic.ListView):
     model = Event
@@ -174,3 +175,18 @@ def terminate_event(request, event_id):
     instance = get_object_or_404(Event, pk=event_id)
     instance.delete()
     return JsonResponse({'message': 'Event deleted successfully'})
+
+# -------------------------------------------------------------------
+
+# request form for employees
+def requestsform(request):
+    if request.method == "POST":
+        # requests form
+        form = RequestForm(request.POST)
+        # if the forms are valid, create the user
+        if form.is_valid():
+            form.save()
+            return redirect("requestsform")
+    else:
+        form = RequestForm()
+    return render(request, "requestsform.html", {'form':form,})
