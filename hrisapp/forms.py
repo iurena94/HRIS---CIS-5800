@@ -1,5 +1,6 @@
 from django.forms import ModelForm, DateInput
 from .models import Event, Request, Feedback
+from django import forms
 
 class EventForm(ModelForm):
   class Meta:
@@ -20,6 +21,7 @@ class EventForm(ModelForm):
 
 # request form for employees
 class RequestForm(ModelForm):
+  content = forms.CharField(widget=forms.Textarea(attrs={'row':'20','cols':'60','placeholder':"Enter content here", 'type':'text'}),)
   class Meta:
     model = Request
     fields = '__all__'
