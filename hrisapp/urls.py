@@ -18,4 +18,6 @@ urlpatterns = [
     path('update_password/', views.update_password, name='update_password'),
     path('allevents',views.allevents, name='allevents'),
     path('terminate_event/<int:event_id>/', views.terminate_event, name='terminate_event'),
+    path('requestsform/', views.requestsform, name='requestsform'),
+
 ]
