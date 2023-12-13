@@ -38,29 +38,41 @@
 <div class="limiterbase">
     <div class="container-base100">
         <div class="wrap-base100"  style="margin-left:65px;">
-            <h1></h1>
-            <table>
-                {% for req in reqs %}
-                    {% if user.userprofile.role == 'Human Resource Officer'%}
-                        {% if req.sendto == "Human Resources" %}
+            {% if user.userprofile.role != 'Employee' %}
+                <h1>Open Requests</h1>
+                <table>
+                    {% for req in reqs %}
+                        {% if user.userprofile.role == 'Admin' %}
                             <tr>
                                 <td>{{ req.From }}</td>
                                 <td>{{ req.topic }}</td>
                                 <td>{{ req.content }}</td>
                             </tr>
                         {% endif %}
-                    {% else %}
-                        {% if req.sendto == "Manager" %}
-                            <tr>
-                                <td>{{ req.From }}</td>
-                                <td>{{ req.topic }}</td>
-                                <td>{{ req.content }}</td>
-                            </tr>
+                        {% if user.userprofile.role == 'Human Resource Officer'%}
+                            {% if req.sendto == "Human Resources" %}
+                                <tr>
+                                    <td>{{ req.From }}</td>
+                                    <td>{{ req.topic }}</td>
+                                    <td>{{ req.content }}</td>
+                                </tr>
+                            {% endif %}
+                        {% else %}
+                            {% if req.sendto == "Manager" %}
+                                <tr>
+                                    <td>{{ req.From }}</td>
+                                    <td>{{ req.topic }}</td>
+                                    <td>{{ req.content }}</td>
+                                </tr>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
 
-                {% endfor %}
-            </table>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <h1>This page is not for your eyes!</h1>
+                <h2>Return to the dashboard</h2>
+            {% endif %}
         </div>
     </div>
 </div>
