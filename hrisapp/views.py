@@ -192,3 +192,12 @@ def requestsform(request):
     else:
         form = RequestForm()
     return render(request, "requestsform.html", {'form':form,})
+
+def request_view(request):
+    reqs = Request.objects.all()
+    return render(request, "requests.html", {'reqs':reqs})
+
+def terminate_request(request, request_id):
+    instance = get_object_or_404(Request, pk=request_id)
+    instance.delete()
+    return JsonResponse({'message': 'Request deleted successfully'})
