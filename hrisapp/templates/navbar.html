@@ -15,10 +15,13 @@
                 <a href="{% url 'calendar' %}"><i class="fa-solid fa-calendar-days"></i>Calendar</a>
                 <a href="{% url 'allevents' %}"><i class="fa-solid fa-star"></i>Events</a>
                 {% if request.user.userprofile.role != 'Employee' %}
-                <a href="{% url 'event_new' %}"><i class="fa-solid fa-list-check"></i>Scheduling</a>
-                <a href="#"><i class="fa-brands fa-dashcube"></i>Requests</a>
+                    <a href="{% url 'event_new' %}"><i class="fa-solid fa-list-check"></i>Scheduling</a>
+                    <a href="{% url 'request_view' %}"><i class="fa-brands fa-dashcube"></i>Requests</a>
                 {% else %}
-                <a href="{% url 'requestsform' %}"><i class="fa-solid fa-list-check"></i>Request</a>
+                    <a href="{% url 'requestsform' %}"><i class="fa-solid fa-list-check"></i>Request</a>
+                {% endif %}
+                {% if request.user.userprofile.role == 'Admin' %}
+                    <a href="{% url 'requestsform' %}"><i class="fa-solid fa-list-check"></i>Request</a>
                 {% endif %}
 
 
