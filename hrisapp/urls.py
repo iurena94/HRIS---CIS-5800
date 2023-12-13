@@ -19,5 +19,7 @@ urlpatterns = [
     path('allevents',views.allevents, name='allevents'),
     path('terminate_event/<int:event_id>/', views.terminate_event, name='terminate_event'),
     path('requestsform/', views.requestsform, name='requestsform'),
+    path('request_view/', views.request_view, name='request_view'),
+    path('terminate_request/<int:request_id>/', views.terminate_request, name='terminate_request'),
 
 ]
