@@ -32,6 +32,7 @@ class RequestForm(ModelForm):
 
 # feedback form for all users
 class FeedbackForm(ModelForm):
+  topic = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter topic here", 'type':'text'}),)
   content = forms.CharField(widget=forms.Textarea(attrs={'row':'20','cols':'60','placeholder':"Enter content here", 'type':'text'}),)
   class Meta:
     model = Feedback
