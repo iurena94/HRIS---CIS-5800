@@ -21,5 +21,6 @@ urlpatterns = [
     path('requestsform/', views.requestsform, name='requestsform'),
     path('request_view/', views.request_view, name='request_view'),
     path('terminate_request/<int:request_id>/', views.terminate_request, name='terminate_request'),
+    path('feedback_form/', views.feedback_form, name='feedback_form'),
 
 ]
