@@ -5,11 +5,15 @@
             <div class="logo">
                 <img src="{% static 'images/icons/walmart-yellow6.png' %}" alt="Walmart's small logo">
                 <div class="menu_list">
-                    <span style="font-weight: bold; color:black;font-size:15px;"><a href="{% url 'profile' %}">{{request.user.first_name}} {{request.user.last_name}}</a></span>
+                    <span style="font-weight: bold; color:black;font-size:15px;">{{request.user.first_name}} {{request.user.last_name}}</span>
                     <span>#{{ request.user.username }}</span>
-                    
                 </div>
             </div>
+            
+            <div class="menu_list">
+                <a href="{% url 'profile' %}"><i class="fa-solid fa-user"></i> Profile </a>
+            </div>
+
             <div class="menu_list">
                 <span>Menu</span>
                 <a href="{% url 'calendar' %}"><i class="fa-solid fa-calendar-days"></i>Calendar</a>
@@ -23,12 +27,9 @@
                 {% if request.user.userprofile.role == 'Admin' %}
                     <a href="{% url 'requestsform' %}"><i class="fa-solid fa-list-check"></i>Request</a>
                 {% endif %}
-
-
-                
                 <a href="#"><i class="fa-solid fa-star"></i>Inbox</a>
-               <!-- <a href="#"><i class="fa-solid fa-spinner"></i> Feedback </a>-->
             </div>
+
             {% if request.user.userprofile.role != 'Employee' %}
             <div class="menu_list">
                 <span>Users</span>
@@ -40,7 +41,7 @@
             {% endif %}
 
             <div class="menu_list">
-                <a href="#"><i class="fa-solid fa-spinner"></i> Feedback </a>
+                <a href="{% url 'feedback_form' %}"><i class="fa-solid fa-spinner"></i> Feedback </a>
             </div>
             
             <div class="menu_list">
