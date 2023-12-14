@@ -1,5 +1,5 @@
 from django.forms import ModelForm, DateInput
-from .models import Event, Request, Feedback
+from .models import Event, Request, Feedback, Message
 from django import forms
 
 class EventForm(ModelForm):
@@ -41,3 +41,14 @@ class FeedbackForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
       super(FeedbackForm, self).__init__(*args, **kwargs)
+
+# message form for all users
+class MessageForm(ModelForm):
+  subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter Subject here", 'type':'text'}),)
+  content = forms.CharField(widget=forms.Textarea(attrs={'row':'20','cols':'60','placeholder':"Enter content here", 'type':'text'}),)
+  class Meta:
+    model = Message
+    fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+      super(MessageForm, self).__init__(*args, **kwargs)
