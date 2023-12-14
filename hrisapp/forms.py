@@ -28,14 +28,15 @@ class RequestForm(ModelForm):
     exclude = ['From']
 
     def __init__(self, *args, **kwargs):
-      super(EventForm, self).__init__(*args, **kwargs)
+      super(RequestForm, self).__init__(*args, **kwargs)
 
 # feedback form for all users
 class FeedbackForm(ModelForm):
+  content = forms.CharField(widget=forms.Textarea(attrs={'row':'20','cols':'60','placeholder':"Enter content here", 'type':'text'}),)
   class Meta:
     model = Feedback
     fields = '__all__'
     exclude = ['From']
 
     def __init__(self, *args, **kwargs):
-      super(EventForm, self).__init__(*args, **kwargs)
+      super(FeedbackForm, self).__init__(*args, **kwargs)
