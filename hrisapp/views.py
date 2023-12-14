@@ -193,11 +193,28 @@ def requestsform(request):
         form = RequestForm()
     return render(request, "requestsform.html", {'form':form,})
 
+# viewing every request submission
 def request_view(request):
     reqs = Request.objects.all()
     return render(request, "requests.html", {'reqs':reqs})
 
+# deleting request objects
 def terminate_request(request, request_id):
     instance = get_object_or_404(Request, pk=request_id)
     instance.delete()
     return JsonResponse({'message': 'Request deleted successfully'})
+
+# feedback form for every user
+def feedback_form(request):
+    if request.method == "POST":
+        # requests form
+        form = FeedbackForm(request.POST)
+        # if the forms are valid, create the user
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.From = request.user.username
+            form.save()
+            return redirect("feedback")
+    else:
+        form = FeedbackForm()
+    return render(request, "feedback.html", {'form':form,})
